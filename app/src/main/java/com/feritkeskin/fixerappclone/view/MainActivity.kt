@@ -9,14 +9,15 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.feritkeskin.fixerappclone.adapter.FixerAdapter
 import com.feritkeskin.fixerappclone.databinding.ActivityMainBinding
 import com.feritkeskin.fixerappclone.model.CurrencyAndPrice
+import com.feritkeskin.fixerappclone.util.Contains.YYYY_MM_DD
 import com.feritkeskin.fixerappclone.util.monthToTwoLength
-import com.feritkeskin.fixerappclone.viewmodel.ComparisonsViewModel
+import com.feritkeskin.fixerappclone.viewmodel.FixerViewModel
 import java.text.SimpleDateFormat
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var viewModel: ComparisonsViewModel
+    private lateinit var viewModel: FixerViewModel
     private var arrayList = ArrayList<CurrencyAndPrice>()
     private lateinit var binding: ActivityMainBinding
     private var startTime: String = ""
@@ -27,8 +28,8 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         binding.progressFixer.visibility = View.VISIBLE
         setContentView(binding.root)
-        viewModel = ViewModelProvider(this)[ComparisonsViewModel::class.java]
-        val sdf = SimpleDateFormat("YYYY-MM-DD")
+        viewModel = ViewModelProvider(this)[FixerViewModel::class.java]
+        val sdf = SimpleDateFormat(YYYY_MM_DD,Locale.getDefault())
         val instantDate = sdf.format(Date())
         startTime = instantDate
         endTime = instantDate
@@ -57,8 +58,6 @@ class MainActivity : AppCompatActivity() {
 
         binding.tvResult.setOnClickListener {
             binding.progressFixer.visibility = View.VISIBLE
-            println("1. Start time: $startTime")
-            println("2. Start time: $endTime")
             viewModel.getFixerData(startTime, endTime)
             subscribeToObservers()
         }

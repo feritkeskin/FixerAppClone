@@ -57,9 +57,4 @@ dependencies {
 
     //ViewModeScpoe
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0"
-
-    //Flipper
-    implementation "com.facebook.flipper:flipper-network-plugin:0.176.1"
-    implementation "com.facebook.flipper:flipper:0.176.1"
-    implementation 'com.facebook.soloader:soloader:0.10.4'
 }

@@ -9,7 +9,7 @@ import com.feritkeskin.fixerappclone.service.Service
 import com.feritkeskin.fixerappclone.util.Contains.API_KEY
 import kotlinx.coroutines.launch
 
-class ComparisonsViewModel : ViewModel() {
+class FixerViewModel : ViewModel() {
 
     private val _homeModel = MutableLiveData<FixerModel>()
     val homeModel: LiveData<FixerModel> = _homeModel
@@ -24,7 +24,6 @@ class ComparisonsViewModel : ViewModel() {
             hashMap["base"] = "TRY"
             hashMap["end_date"] = endTime
             hashMap["apikey"] = API_KEY
-            println("android vahit abi hashMap: $hashMap")
             val comparisonsRepository = Service().getUsers().getFixer(hashMap)
             _homeModel.value = comparisonsRepository
         }
